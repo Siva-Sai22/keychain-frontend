@@ -286,7 +286,7 @@ export default function App() {
           </div>
         </header>
 
-        <div className="grid-layout">
+        <div className="grid-layout" style={{ marginBottom: '2rem' }}>
           {/* Main Visuals Column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {/* Live Map Card */}
@@ -335,34 +335,34 @@ export default function App() {
                 </div>
               </div>
             </div>
-
-            {/* Event Log */}
-            <div className="card">
-              <div className="card-title">
-                <AlertTriangle size={24} /> Alerts Log
-              </div>
-              <ul className="events-list">
-                {eventsLog.length === 0 ? (
-                  <li style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '1rem' }}>No events recorded yet.</li>
-                ) : (
-                  eventsLog.map((event, i) => (
-                    <li key={i} className="event-item">
-                      <div className={`event-icon ${event.event}`}>
-                        {getEventIcon(event.event)}
-                      </div>
-                      <div className="event-details">
-                        <div className="event-type">{event.event.replace('_', ' ')}</div>
-                        <div className="event-meta">
-                          <span>{event.speed} km/h</span>
-                          <span>{new Date(event.time).toLocaleTimeString()}</span>
-                        </div>
-                      </div>
-                    </li>
-                  ))
-                )}
-              </ul>
-            </div>
           </div>
+        </div>
+
+        {/* Event Log (Full Width) */}
+        <div className="card">
+          <div className="card-title">
+            <AlertTriangle size={24} /> Alerts Log
+          </div>
+          <ul className="events-list">
+            {eventsLog.length === 0 ? (
+              <li style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '1rem' }}>No events recorded yet.</li>
+            ) : (
+              eventsLog.map((event, i) => (
+                <li key={i} className="event-item">
+                  <div className={`event-icon ${event.event}`}>
+                    {getEventIcon(event.event)}
+                  </div>
+                  <div className="event-details">
+                    <div className="event-type">{event.event.replace('_', ' ')}</div>
+                    <div className="event-meta">
+                      <span>{event.speed} km/h</span>
+                      <span>{new Date(event.time).toLocaleTimeString()}</span>
+                    </div>
+                  </div>
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       </div>
       <ToastContainer position="top-right" />
