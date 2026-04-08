@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Keychain Dashboard</title>
+</head>
+<body>
+  <h1>🚗 Vehicle Alerts</h1>
+  <ul id="events"></ul>
+
+  <script>
+    async function fetchData() {
+      const res = await fetch("http://localhost:3000/events");
+      const data = await res.json();
+
+      const list = document.getElementById("events");
+      list.innerHTML = "";
+
+      data.reverse().forEach(e => {
+        const li = document.createElement("li");
+        li.innerText = `${e.event} | Speed: ${e.speed} | Time: ${e.time}`;
+        list.appendChild(li);
+      });
+    }
+
+    setInterval(fetchData, 2000);
+  </script>
+</body>
+</html>
